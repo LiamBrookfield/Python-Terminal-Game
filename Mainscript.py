@@ -1,26 +1,22 @@
 #Basic Version to conceptualize game
-grid = {1: "XXXXX", 2: "XXXXX", 3: "XXXXX", 4: "XXXXX", 5: "XXXXX", }
-
-for cell in grid:
-    print(grid.get(cell))
-
-
 
 
 # Idea for gameboard constructor
-# class GameBoard:
-#     cell = """
-#         +---
-#         |   
-#         |   
-#         |   
-#         +---
-#         """
-    
-    
-#     def __init__(self, row_count, column_count):
+class GameBoard:
+    row_divider = "+---"
+    row_divider_end = "+---+"
+    col_walls = "|   "
+    play_storer = "|   "
         
-      
-# board1 = GameBoard()
+    def make_board(self, column_num, row_num):
         
-# print(board1.cell)
+        for i in range(row_num):
+            print(self.row_divider * (column_num - 1) + self.row_divider_end)
+            print(self.col_walls * (column_num + 1))
+            print(self.play_storer * (column_num + 1))
+            print(self.col_walls * (column_num + 1))
+        print(self.row_divider * (column_num - 1) + self.row_divider_end)
+    
+
+board1 = GameBoard()
+board1.make_board(4, 4)
