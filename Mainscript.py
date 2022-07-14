@@ -3,21 +3,28 @@
 
 # Idea for gameboard constructor
 class GameBoard:
-    row_divider = "+---"
-    row_divider_end = "+---+"
-    col_walls = "|   "
-    play_storer = "|   "
+    row_divider = "+---+---+---+---+---+---+---+"
+    col_walls = "|   |   |   |   |   |   |   |"
+    x_piece = ["| X "]
+    o_piece = ["| O "]
+
+    row1_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
+    row2_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
+    row3_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
+    row4_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
+    row5_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
+    row6_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
         
-    def make_board(self, column_num = 7, row_num = 6):
-        for c in range(column_num):
-            print(f"  {c+1} ", end = "")
-        print("")
-        for r in range(row_num):
-            print(self.row_divider * (column_num - 1) + self.row_divider_end)
-            print(self.col_walls * (column_num + 1))
-            print(self.play_storer * (column_num + 1))
-            print(self.col_walls * (column_num + 1))
-        print(self.row_divider * (column_num - 1) + self.row_divider_end)
+    def make_board(self):
+        print("  1   2   3   4   5   6   7")
+        for i in range(6):
+            print(self.row_divider)
+            print(self.col_walls)
+            print("".join(self.row1_dict.values()))
+            print(self.col_walls)
+        print(self.row_divider)
+        
+        
     
 
 board1 = GameBoard()
