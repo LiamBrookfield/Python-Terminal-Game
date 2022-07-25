@@ -1,42 +1,78 @@
-#Basic Version to conceptualize game
+
+from re import sub
 
 
-# Idea for gameboard constructor
 class Connectfour:
     row_divider = "+---+---+---+---+---+---+---+"
     col_walls = "|   |   |   |   |   |   |   |"
-    x_piece = ["| X "]
-    o_piece = ["| O "]
+    x_piece = "| X "
+    o_piece = "| O "
 
-    row1_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
-    row2_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
-    row3_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
-    row4_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
-    row5_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
-    row6_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
-        
+    game_dict = {1: {1: "|a  ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"},
+        2: {1: "|b  ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"},
+        3: {1: "|c  ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"},
+        4: {1: "|d  ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"},
+        5: {1: "|e  ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"},
+        6: {1: "|f  ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}}
+
+
     
     def print_current_board(self):
-        dict_string1 = "".join(self.row1_dict.values())
-        dict_string2 = "".join(self.row2_dict.values())
-        dict_string3 = "".join(self.row3_dict.values())
-        dict_string4 = "".join(self.row4_dict.values())
-        dict_string5 = "".join(self.row5_dict.values())
-        dict_string6 = "".join(self.row6_dict.values())
-        self.board = (f"  1   2   3   4   5   6   7\n{self.row_divider}\n{self.col_walls}\n{dict_string1}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string2}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string3}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string4}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string5}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string6}\n{self.col_walls}\n{self.row_divider}")
+        dict_string1 = "".join(self.game_dict.get(1).values())
+        dict_string2 = "".join(self.game_dict.get(2).values())
+        dict_string3 = "".join(self.game_dict.get(3).values())
+        dict_string4 = "".join(self.game_dict.get(4).values())
+        dict_string5 = "".join(self.game_dict.get(5).values())
+        dict_string6 = "".join(self.game_dict.get(6).values())
+        self.board = (f"""  1   2   3   4   5   6   7
+{self.row_divider}
+{self.col_walls}
+{dict_string6}
+{self.col_walls}
+{self.row_divider}
+{self.col_walls}
+{dict_string5}
+{self.col_walls}
+{self.row_divider}
+{self.col_walls}
+{dict_string4}
+{self.col_walls}
+{self.row_divider}
+{self.col_walls}
+{dict_string3}
+{self.col_walls}
+{self.row_divider}
+{self.col_walls}
+{dict_string2}
+{self.col_walls}
+{self.row_divider}
+{self.col_walls}
+{dict_string1}
+{self.col_walls}
+{self.row_divider}""")
     
         print(self.board)
 
 
-    def make_move(self):
-        print("  1   2   3   4   5   6   7")
-        for i in range(6):
-            print(self.row_divider)
-            print(self.col_walls)
-            print("".join(self.row1_dict.values()))
-            print(self.col_walls)
-        print(self.row_divider)
+    def make_play(self, piece):
+       for i in self.game_dict:
+        for subdict in (self.game_dict.get(i)).values():
+            if subdict == "|   ":
+                subdict = piece
+                print(subdict)
+            
+            
+    
+
+                
+
+                
+
+
+
         
         
 board1 = Connectfour()
-board1.make_board()
+
+board1.make_play("| X ")
+board1.print_current_board()
