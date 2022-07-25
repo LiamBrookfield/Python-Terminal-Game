@@ -2,7 +2,7 @@
 
 
 # Idea for gameboard constructor
-class GameBoard:
+class Connectfour:
     row_divider = "+---+---+---+---+---+---+---+"
     col_walls = "|   |   |   |   |   |   |   |"
     x_piece = ["| X "]
@@ -15,7 +15,13 @@ class GameBoard:
     row5_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
     row6_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
         
+    
     def make_board(self):
+        self.board = "".join(self.row1_dict.values())
+        print(self.board)
+
+
+    def make_move(self):
         print("  1   2   3   4   5   6   7")
         for i in range(6):
             print(self.row_divider)
@@ -25,7 +31,6 @@ class GameBoard:
         print(self.row_divider)
         
         
-    
-
-board1 = GameBoard()
+board1 = Connectfour()
 board1.make_board()
+print(board1.o_piece)
