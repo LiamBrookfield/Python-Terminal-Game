@@ -16,8 +16,15 @@ class Connectfour:
     row6_dict = {1: "|   ", 2: "|   ", 3: "|   ", 4: "|   ", 5: "|   ", 6: "|   ", 7: "|   ", 8: "|"}
         
     
-    def make_board(self):
-        self.board = "".join(self.row1_dict.values())
+    def print_current_board(self):
+        dict_string1 = "".join(self.row1_dict.values())
+        dict_string2 = "".join(self.row2_dict.values())
+        dict_string3 = "".join(self.row3_dict.values())
+        dict_string4 = "".join(self.row4_dict.values())
+        dict_string5 = "".join(self.row5_dict.values())
+        dict_string6 = "".join(self.row6_dict.values())
+        self.board = (f"  1   2   3   4   5   6   7\n{self.row_divider}\n{self.col_walls}\n{dict_string1}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string2}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string3}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string4}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string5}\n{self.col_walls}\n{self.row_divider}\n{self.col_walls}\n{dict_string6}\n{self.col_walls}\n{self.row_divider}")
+    
         print(self.board)
 
 
@@ -33,4 +40,3 @@ class Connectfour:
         
 board1 = Connectfour()
 board1.make_board()
-print(board1.o_piece)
