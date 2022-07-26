@@ -8,6 +8,9 @@ class Connectfour:
     x_piece = "| X "
     o_piece = "| O "
 
+    x_win_condition = False
+    o_win_condition = False
+
     game_lst = [["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
         ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
         ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
@@ -16,7 +19,9 @@ class Connectfour:
         ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"]]
 
 
-    
+    # Takes the nested lists of game_lst and formats them into a long multi-line string. When called prints the
+    # connect 4 board in its current state.
+
     def print_current_board(self):
         dict_string1 = "".join(self.game_lst[0])
         dict_string2 = "".join(self.game_lst[1])
@@ -54,8 +59,11 @@ class Connectfour:
         print(self.board)
 
 
-    def make_play(self, column, piece):
-        if piece in "O0oqQ":
+
+    # Logic for adding a piece to the game board. Alters the nested lists inside of game_lst above which then changes the output of print_current_board.
+
+    def make_move(self, column, piece):
+        if piece in "O0oqQ.":
             piece = self.o_piece
         else:
             piece = self.x_piece
@@ -68,11 +76,36 @@ class Connectfour:
                     return self.game_lst
         print("Invalid piece or column number.")
 
+    
+    # Iterates through game_lst and tries to find four connected pieces
+    
+    def check_win_condition(self):
+        
+        # Horizontal check
+    
+        for lst in self.game_lst:
+            if self.x_piece in lst and lst[lst.index(self.x_piece):(lst.index(self.x_piece))+4].count(self.x_piece) >= 4:
+                self.x_win_condition = True
+                return self.x_win_condition
+       
+           
+
+
 board1 = Connectfour()
-board1.make_play(4, "x")
-board1.make_play(4, "0")
-board1.make_play(4, "o")
-board1.make_play(4, "O")
-board1.make_play(4, "P")
-board1.make_play(4, "21")
+board1.make_move(1, "x")
+board1.make_move(1, "o")
+board1.make_move(2, "o")
+board1.make_move(3, "x")
+board1.make_move(4, "o")
+board1.make_move(5, "x")
+board1.make_move(6, "x")
+board1.make_move(7, "o")
+board1.make_move(3, "o")
+
+
+
 board1.print_current_board()
+board1.check_win_condition()
+print(board1.game_lst[0])
+print(board1.x_win_condition)
+print(board1.o_win_condition)
