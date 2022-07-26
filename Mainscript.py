@@ -8,22 +8,22 @@ class Connectfour:
     x_piece = "| X "
     o_piece = "| O "
 
-    game_dict = [["|a  ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
-        ["|b  ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
-        ["|c  ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
-        ["|d  ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
-        ["|e  ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
-        ["|f  ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"]]
+    game_lst = [["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
+        ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
+        ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
+        ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
+        ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
+        ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"]]
 
 
     
     def print_current_board(self):
-        dict_string1 = "".join(self.game_dict[0])
-        dict_string2 = "".join(self.game_dict[1])
-        dict_string3 = "".join(self.game_dict[2])
-        dict_string4 = "".join(self.game_dict[3])
-        dict_string5 = "".join(self.game_dict[4])
-        dict_string6 = "".join(self.game_dict[5])
+        dict_string1 = "".join(self.game_lst[0])
+        dict_string2 = "".join(self.game_lst[1])
+        dict_string3 = "".join(self.game_lst[2])
+        dict_string4 = "".join(self.game_lst[3])
+        dict_string5 = "".join(self.game_lst[4])
+        dict_string6 = "".join(self.game_lst[5])
         self.board = (f"""  1   2   3   4   5   6   7
 {self.row_divider}
 {self.col_walls}
@@ -54,23 +54,21 @@ class Connectfour:
         print(self.board)
 
 
-    def make_play(self):
-        for lst in self.game_dict:
-            print(lst)
-          
-            
-            
-            
-    
+    def make_play(self, column, piece):
+        if column in range(1, 7) and piece == self.x_piece or piece == self.o_piece:
+            print(f"Placing {piece} in column {column}")
+            for lst in self.game_lst:
+                if lst[column - 1] == "|   ":
+                    lst.pop(column - 1)
+                    lst.insert((column - 1), piece)
+                    return self.game_lst
+        print("Invalid piece or column number.")
 
-                
-
-                
-
-
-
-        
-        
 board1 = Connectfour()
+board1.make_play(4, "| O ")
+board1.make_play(4, "| X ")
+board1.make_play(4, "| O ")
+board1.make_play(4, "| X ")
+board1.make_play(4, "| O ")
+board1.make_play(4, "| P ")
 board1.print_current_board()
-board1.make_play()
