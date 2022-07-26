@@ -55,6 +55,10 @@ class Connectfour:
 
 
     def make_play(self, column, piece):
+        if piece in "O0oqQ":
+            piece = self.o_piece
+        else:
+            piece = self.x_piece
         if column in range(1, 7) and piece == self.x_piece or piece == self.o_piece:
             print(f"Placing {piece} in column {column}")
             for lst in self.game_lst:
@@ -65,10 +69,10 @@ class Connectfour:
         print("Invalid piece or column number.")
 
 board1 = Connectfour()
-board1.make_play(4, "| O ")
-board1.make_play(4, "| X ")
-board1.make_play(4, "| O ")
-board1.make_play(4, "| X ")
-board1.make_play(4, "| O ")
-board1.make_play(4, "| P ")
+board1.make_play(4, "x")
+board1.make_play(4, "0")
+board1.make_play(4, "o")
+board1.make_play(4, "O")
+board1.make_play(4, "P")
+board1.make_play(4, "21")
 board1.print_current_board()
