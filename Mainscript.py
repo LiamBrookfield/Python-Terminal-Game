@@ -81,7 +81,7 @@ class Connectfour:
     
     def check_win_condition(self):
         
-        # Horizontal check
+        # Horizontal Check
     
         for lst in self.game_lst:
             if ((lst[0:4].count(self.x_piece)) >= 4 or 
@@ -97,25 +97,42 @@ class Connectfour:
             (lst[3:7].count(self.o_piece)) >=4):
                 self.o_win_condition = True
                 return self.o_win_condition
+
+        # Vertical Check
+        
+        for tupl in zip(self.game_lst[0], self.game_lst[1], self.game_lst[2], self.game_lst[3], self.game_lst[4], self.game_lst[5]):
+            if ((tupl[0:4].count(self.x_piece)) >= 4 or 
+            (tupl[1:5].count(self.x_piece)) >=4 or 
+            (tupl[2:6].count(self.x_piece)) >=4):
+                self.x_win_condition = True
+                return self.x_win_condition
+            if ((tupl[0:4].count(self.o_piece)) >= 4 or 
+            (tupl[1:5].count(self.o_piece)) >=4 or 
+            (tupl[2:6].count(self.o_piece)) >=4):
+                self.o_win_condition = True
+                return self.o_win_condition
+            
+
        
            
 
 
 board1 = Connectfour()
-board1.make_move(1, "x")
+board1.make_move(1, "o")
 board1.make_move(1, "o")
 board1.make_move(2, "o")
 board1.make_move(3, "o")
 board1.make_move(4, "x")
 board1.make_move(5, "x")
-board1.make_move(6, "x")
+board1.make_move(6, "o")
 board1.make_move(7, "x")
 board1.make_move(3, "o")
+board1.make_move(1, "o")
+board1.make_move(1, "o")
 
 
 
 board1.print_current_board()
 board1.check_win_condition()
-print(board1.game_lst[0])
 print(board1.x_win_condition)
 print(board1.o_win_condition)
