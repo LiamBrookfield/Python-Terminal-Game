@@ -79,7 +79,7 @@ class Connectfour:
     
     # Iterates through game_lst and tries to find four connected pieces
     
-    def check_win_condition(self):
+    def check_win_condition_horizontal(self):
         
         # Horizontal Check
     
@@ -98,6 +98,9 @@ class Connectfour:
                 self.o_win_condition = True
                 return self.o_win_condition
 
+
+    def check_win_condition_vertical(self):
+
         # Vertical Check
         
         for tupl in zip(self.game_lst[0], self.game_lst[1], self.game_lst[2], self.game_lst[3], self.game_lst[4], self.game_lst[5]):
@@ -111,50 +114,71 @@ class Connectfour:
             (tupl[2:6].count(self.o_piece)) >=4):
                 self.o_win_condition = True
                 return self.o_win_condition
-            
+
+    def check_win_condition_diagonal(self):
+
         # Diagonal Check /
-        # print(list(zip(self.game_lst[0], self.game_lst[1], self.game_lst[2], self.game_lst[3], self.game_lst[4], self.game_lst[5])))
+        x = 0
         y = 0
         for lst in self.game_lst:
             x = 0
             for piece in lst:
-                print(piece)
                 if (self.game_lst[y][x] == self.x_piece and
                 self.game_lst[y+1][x+1] == self.x_piece and
                 self.game_lst[y+2][x+2] == self.x_piece and
                 self.game_lst[y+3][x+3] == self.x_piece):
-                    self.x_win_condition == True
-                    return self.x_win_condition
+                    self.x_win_condition = True
+                    return self.x_win_condition 
                 x += 1
                 if x > 3:
                     break
             y += 1
             if y > 2:
                 break
-            
-        
+        x = 0
+        y = 0
+        for lst in self.game_lst:
+            x = 0
+            for piece in lst:
+                if (self.game_lst[y][x] == self.o_piece and
+                self.game_lst[y+1][x+1] == self.o_piece and
+                self.game_lst[y+2][x+2] == self.o_piece and
+                self.game_lst[y+3][x+3] == self.o_piece):
+                    self.o_win_condition = True
+                    return self.o_win_condition 
+                x += 1
+                if x > 3:
+                    break
+            y += 1
+            if y > 2:
+                break
 
 board1 = Connectfour()
 board1.make_move(6, "o")
 board1.make_move(6, "o")
-board1.make_move(2, "x")
+board1.make_move(2, "o")
 board1.make_move(3, "o")
 board1.make_move(4, "x")
 board1.make_move(4, "o")
 board1.make_move(5, "o")
 board1.make_move(6, "o")
 board1.make_move(7, "x")
-board1.make_move(3, "x")
+board1.make_move(3, "o")
 board1.make_move(1, "x")
 board1.make_move(1, "x")
 board1.make_move(5, "o")
 board1.make_move(5, "x")
+board1.make_move(4, "o")
+board1.make_move(5, "o")
+board1.make_move(2, "x")
+board1.make_move(3, "x")
 board1.make_move(4, "x")
 board1.make_move(5, "x")
 
 
 
 board1.print_current_board()
-board1.check_win_condition()
+board1.check_win_condition_diagonal()
+
 print(board1.x_win_condition)
 print(board1.o_win_condition)
