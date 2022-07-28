@@ -9,7 +9,7 @@ class Connectfour:
     o_piece = "| O "
 
     x_win_condition = False
-    o_win_condition = False
+    o_win_condition = False 
 
     game_lst = [["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
         ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
@@ -67,7 +67,7 @@ class Connectfour:
             piece = self.o_piece
         else:
             piece = self.x_piece
-        if column in range(1, 7) and piece == self.x_piece or piece == self.o_piece:
+        if column in range(1, 8) and piece == self.x_piece or piece == self.o_piece:
             print(f"Placing {piece} in column {column}")
             for lst in self.game_lst:
                 if lst[column - 1] == "|   ":
@@ -84,9 +84,19 @@ class Connectfour:
         # Horizontal check
     
         for lst in self.game_lst:
-            if self.x_piece in lst and lst[lst.index(self.x_piece):(lst.index(self.x_piece))+4].count(self.x_piece) >= 4:
+            if ((lst[0:4].count(self.x_piece)) >= 4 or 
+            (lst[1:5].count(self.x_piece)) >=4 or 
+            (lst[2:6].count(self.x_piece)) >=4 or 
+            (lst[3:7].count(self.x_piece)) >=4):
                 self.x_win_condition = True
                 return self.x_win_condition
+        for lst in self.game_lst:
+            if ((lst[0:4].count(self.o_piece)) >= 4 or 
+            (lst[1:5].count(self.o_piece)) >=4 or 
+            (lst[2:6].count(self.o_piece)) >=4 or 
+            (lst[3:7].count(self.o_piece)) >=4):
+                self.o_win_condition = True
+                return self.o_win_condition
        
            
 
@@ -95,11 +105,11 @@ board1 = Connectfour()
 board1.make_move(1, "x")
 board1.make_move(1, "o")
 board1.make_move(2, "o")
-board1.make_move(3, "x")
-board1.make_move(4, "o")
+board1.make_move(3, "o")
+board1.make_move(4, "x")
 board1.make_move(5, "x")
 board1.make_move(6, "x")
-board1.make_move(7, "o")
+board1.make_move(7, "x")
 board1.make_move(3, "o")
 
 
