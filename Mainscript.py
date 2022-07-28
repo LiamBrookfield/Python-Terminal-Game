@@ -112,6 +112,10 @@ class Connectfour:
                 self.o_win_condition = True
                 return self.o_win_condition
             
+        # Diagonal Check /
+
+        for piece in self.game_lst:
+            pass
 
        
            
@@ -123,12 +127,17 @@ board1.make_move(1, "o")
 board1.make_move(2, "o")
 board1.make_move(3, "o")
 board1.make_move(4, "x")
-board1.make_move(5, "x")
+board1.make_move(5, "o")
 board1.make_move(6, "o")
 board1.make_move(7, "x")
 board1.make_move(3, "o")
-board1.make_move(1, "o")
-board1.make_move(1, "o")
+board1.make_move(1, "x")
+board1.make_move(1, "x")
+board1.make_move(5, "o")
+board1.make_move(5, "x")
+board1.make_move(5, "x")
+board1.make_move(5, "x")
+board1.make_move(5, "x")
 
 
 
