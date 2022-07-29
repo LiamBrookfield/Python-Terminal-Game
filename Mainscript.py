@@ -1,5 +1,6 @@
 
 from re import sub
+from os import  system
 
 
 class Connectfour:
@@ -153,32 +154,44 @@ class Connectfour:
             if y > 2:
                 break
 
-board1 = Connectfour()
-board1.make_move(6, "o")
-board1.make_move(6, "o")
-board1.make_move(2, "o")
-board1.make_move(3, "o")
-board1.make_move(4, "x")
-board1.make_move(4, "o")
-board1.make_move(5, "o")
-board1.make_move(6, "o")
-board1.make_move(7, "x")
-board1.make_move(3, "o")
-board1.make_move(1, "x")
-board1.make_move(1, "x")
-board1.make_move(5, "o")
-board1.make_move(5, "x")
-board1.make_move(4, "o")
-board1.make_move(5, "o")
-board1.make_move(2, "x")
-board1.make_move(3, "x")
-board1.make_move(4, "x")
-board1.make_move(5, "x")
+            # Diagonal Check \
 
+        x = 0
+        y = 0
+        for lst in self.game_lst:
+            x = -2
+            for piece in lst:
+                if (self.game_lst[y][x] == self.x_piece and
+                self.game_lst[y+1][x-1] == self.x_piece and
+                self.game_lst[y+2][x-2] == self.x_piece and
+                self.game_lst[y+3][x-3] == self.x_piece):
+                    self.x_win_condition = True
+                    return self.x_win_condition 
+                x -= 1
+                if x < -5:
+                    break
+            y += 1
+            if y > 2:
+                break
+        x = 0
+        y = 0
+        for lst in self.game_lst:
+            x = -2
+            for piece in lst:
+                if (self.game_lst[y][x] == self.o_piece and
+                self.game_lst[y+1][x-1] == self.o_piece and
+                self.game_lst[y+2][x-2] == self.o_piece and
+                self.game_lst[y+3][x-3] == self.o_piece):
+                    self.o_win_condition = True
+                    return self.o_win_condition 
+                x -= 1
+                if x < -5:
+                    break
+            y += 1
+            if y > 2:
+                break
 
+game = Connectfour()
 
-board1.print_current_board()
-board1.check_win_condition_diagonal()
-
-print(board1.x_win_condition)
-print(board1.o_win_condition)
+def play_game(move, column):
+    print "Welcome to Connect Four, to get started"
