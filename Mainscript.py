@@ -1,6 +1,7 @@
 
+from multiprocessing.sharedctypes import Value
 from re import sub
-from os import  system
+from os import system
 
 
 class Connectfour:
@@ -11,6 +12,7 @@ class Connectfour:
 
     x_win_condition = False
     o_win_condition = False 
+    tie_condition = False
 
     game_lst = [["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
         ["|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|   ", "|"],
@@ -64,7 +66,7 @@ class Connectfour:
     # Logic for adding a piece to the game board. Alters the nested lists inside of game_lst above which then changes the output of print_current_board.
 
     def make_move(self, column, piece):
-        if piece in "O0oqQ.":
+        if piece in "O0oqQ.*p38?@ooooOOOOO":
             piece = self.o_piece
         else:
             piece = self.x_piece
@@ -191,7 +193,63 @@ class Connectfour:
             if y > 2:
                 break
 
+    # Tie check looks through the game list and tries to find "|   ". If not present then a sets tie condition to true.
+
+    def check_tie_condition(self):
+        if not any("|   " in sl for sl in self.game_lst):
+            self.tie_condition = True
+            return self.tie_condition
+    
+
+
 game = Connectfour()
 
-def play_game(move, column):
-    print "Welcome to Connect Four, to get started"
+def tutorial():
+    system("clear")
+    print("Welcome to Connect Four! To get started enter the column number you wish to place a piece into (a number from 1 to 7).")
+
+    game.print_current_board()
+
+    first_column = int(input())
+    print(f"Column number {first_column} selected.")
+    print("Great! Now pick a piece to enter into that column. You can choose between X and O - if what you type is roughly O shaped it'll be an O. Otherwise you'll get an X, so be careful player O.")
+    first_piece = str(input())
+
+    system("clear")
+
+    game.make_move(first_column, first_piece)
+
+    print("You got it - now the game is on. Be the first to connect four pieces to win. Good luck!")
+    return game
+
+answer = (str(input("Skip Tutorial? (Y/N): "))).lower()
+if answer == "n":
+    tutorial = tutorial()
+
+def play_game(game = game):
+    while game.x_win_condition == False and game.o_win_condition == False and game.tie_condition == False:
+        system("clear")
+        game.print_current_board()
+        try: 
+            game.make_move(int(input("Enter Column Number: ")), str(input("Enter piece (X or O): ")))
+        except ValueError:
+            print("Invalid piece or column number.")
+        game.check_win_condition_horizontal()
+        game.check_win_condition_vertical()
+        game.check_win_condition_diagonal()
+        game.check_tie_condition()
+    
+    if game.x_win_condition == True:
+        system("clear")
+        game.print_current_board()
+        print("X is the winner! This script will now end. Ciao :)")
+    elif game.o_win_condition == True:
+        system("clear")
+        game.print_current_board()
+        print("O is the winner! This script will now end. Ciao :)")
+    elif game.tie_condition == True:
+        system("clear")
+        game.print_current_board()
+        print("Looks like nobody wins :(")
+
+play_game = play_game()
